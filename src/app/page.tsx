@@ -585,7 +585,7 @@ function Footer({ darkMode }: { darkMode: any }) {
               {["Services", "Process", "Contact"].map((item) => (
                 <li key={item}>
                   <a
-                    href={`#${item.toLowerCase()}`}
+                    href={`#${item?.toLowerCase()}`}
                     className="text-muted dark:text-muted-dark hover:text-accent transition-colors"
                   >
                     {item}
