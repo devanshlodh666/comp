@@ -79,37 +79,38 @@ export function Projects() {
     //   </div>
     // </section>
 
-    <section id="process" className="py-20">
-      <h3 className="text-3xl md:text-4xl font-bold mb-12 text-center">Our Process</h3>
-      <div className="grid md:grid-cols-3 gap-8">
-        {projects.map((da, index) => (
-          <motion.div
-            key={index}
-            className="p-6 rounded-lg shadow-lg bg-background dark:bg-background-dark border border-border dark:border-border-dark"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          > 
-            <div className={`text-2xl font-bold mb-2`}>{da.title}</div>
-            <p className="text-sm font-semibold mb-2">{da.desc}</p>
-            <div className="flex flex-wrap gap-2 mb-4">
-                   {da.tags.map((tag) => (
-                     <Badge key={tag} variant="secondary" className="text-xs bg-gray-600 text-blue-300">{tag}</Badge>
-                   ))}
-            </div>
-            <a target="_blank" href={da.link} >
-                 <Button
-                   variant="outline"
-                   className="text-blue-400 border-blue-400 hover:bg-blue-400 hover:text-gray-900"
-                  
-                 >
-                   View Project <ExternalLink className="ml-2 h-4 w-4" />
-                   </Button>
-                 </a>
-          </motion.div>
-        ))}
-      </div>
-    </section>
+    <section id="process" className="py-20 px-4">
+  <h3 className="text-3xl md:text-4xl font-bold mb-12 text-center">Our Process</h3>
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    {projects.map((da, index) => (
+      <motion.div
+        key={index}
+        className="p-6 rounded-lg shadow-lg bg-background dark:bg-background-dark border border-border dark:border-border-dark 
+                   w-full max-w-xs mx-auto overflow-hidden"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+      >
+        <div className="text-2xl font-bold mb-2">{da.title}</div>
+        <p className="text-sm font-semibold mb-2">{da.desc}</p>
+        <div className="flex flex-wrap gap-2 mb-4">
+          {da.tags.map((tag) => (
+            <Badge key={tag} variant="secondary" className="text-xs bg-gray-600 text-blue-300">{tag}</Badge>
+          ))}
+        </div>
+        <a target="_blank" href={da.link}>
+          <Button
+            variant="outline"
+            className="text-blue-400 border-blue-400 hover:bg-blue-400 hover:text-gray-900 w-full"
+          >
+            View Project <ExternalLink className="ml-2 h-4 w-4" />
+          </Button>
+        </a>
+      </motion.div>
+    ))}
+  </div>
+</section>
+
 
 
   );

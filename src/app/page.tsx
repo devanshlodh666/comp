@@ -5,15 +5,14 @@ interface IconProps {
   Icon: IconType;
 }
 
-import { FaInstagram} from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 
-
-
+import Image from "next/image";
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input" 
+import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Switch } from "@/components/ui/switch"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
@@ -47,7 +46,7 @@ export default function LandingPage() {
       >
         <NavBar darkMode={darkMode} toggleDarkMode={toggleDarkMode} menuOpen={menuOpen} toggleMenu={toggleMenu} />
 
-        <main className="container mx-auto px-4 py-12">
+        <main className="container mx-auto px-4 py-0 sm:mb-2">
           <HeroSection darkMode={darkMode} scrollYProgress={scrollYProgress} />
           <ServicesSection darkMode={darkMode} />
           <PortfolioSection darkMode={darkMode} />
@@ -55,7 +54,7 @@ export default function LandingPage() {
           {/* <TeamSection darkMode={darkMode} /> */}
           {/* <TestimonialsSection darkMode={darkMode} />
           <StatsSection darkMode={darkMode} />*/}
-          <ContactSection darkMode={darkMode} /> 
+          <ContactSection darkMode={darkMode} />
         </main>
 
         <Footer darkMode={darkMode} />
@@ -66,14 +65,14 @@ export default function LandingPage() {
 
         <motion.div className="fixed bottom-4 right-4 z-50" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
           <a target="_blank" href="https://wa.me/message/ALF2AQCFGOS5G1">
-          <Button
-            size="lg"
-            className="rounded-full bg-accent hover:bg-accent-hover text-accent-foreground"
-            onClick={() => setChatOpen(true)}
-          >
-            <MessageCircle className="mr-2" /> Chat with us
-          </Button>
-            </a>
+            <Button
+              size="lg"
+              className="rounded-full bg-accent hover:bg-accent-hover text-accent-foreground"
+              onClick={() => setChatOpen(true)}
+            >
+              <MessageCircle className="mr-2" /> Chat with us
+            </Button>
+          </a>
         </motion.div>
 
         {/* <ThemeCustomizer accentColor={accentColor} setAccentColor={setAccentColor} /> */}
@@ -82,8 +81,8 @@ export default function LandingPage() {
   )
 }
 
-function NavBar({ darkMode, toggleDarkMode, menuOpen, toggleMenu }:{ darkMode: any, toggleDarkMode: any, menuOpen : any, toggleMenu : any}) {
-  const navItems = ["Services", , "Process",  "Contact"]
+function NavBar({ darkMode, toggleDarkMode, menuOpen, toggleMenu }: { darkMode: any, toggleDarkMode: any, menuOpen: any, toggleMenu: any }) {
+  const navItems = ["Services", , "Process", "Contact"]
 
   return (
     <motion.header
@@ -95,24 +94,37 @@ function NavBar({ darkMode, toggleDarkMode, menuOpen, toggleMenu }:{ darkMode: a
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
           <Link href="/">
-          <div className="flex items-center content-center gap-2">
-          <img src="./title.jpg" alt="." className="h-10 w-10" />
-          <h1 className="text-2xl font-bold">Debdevify</h1>
-          </div>
+            <div className="flex items-center content-center gap-2">
+      <Image
+      src="./l-logo.png" 
+      alt="My Image" 
+      width={45} 
+      height={45} 
+      priority
+    />
+              <h1 className="text-2xl font-bold">DebDevify</h1>
+            </div>
           </Link>
         </motion.div>
         <nav className="hidden md:flex items-center space-x-6">
           <ul className="flex space-x-6">
             {navItems.map((item) => (
               <motion.li key={item} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-                <a href={`#${item.toLowerCase()}`} className=" transition-shadow">
+                <a href={`#${item?.toLowerCase()}`} className=" transition-shadow">
                   {item}
                 </a>
               </motion.li>
             ))}
           </ul>
           {/* <Switch checked={darkMode} onCheckedChange={toggleDarkMode} className="ml-4" /> */}
-          <img className="w-16 h- ml-2" src="./aa.png" /> 
+          {/* <img className="w-16 h- ml-2" src="./aa.png" /> */}
+          <Image 
+      src="./aa.png" 
+      alt="My Image" 
+      width={65} 
+      height={65} 
+      priority
+    />
         </nav>
         <div className="md:hidden flex items-center">
           <Button variant="ghost" size="icon" onClick={toggleMenu}>
@@ -133,7 +145,7 @@ function NavBar({ darkMode, toggleDarkMode, menuOpen, toggleMenu }:{ darkMode: a
                 {navItems.map((item) => (
                   <motion.li key={item} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <a
-                      href={`#${item.toLowerCase()}`}
+                      href={`#${item?.toLowerCase()}`}
                       className="block py-2 hover:text-accent transition-colors"
                       onClick={toggleMenu}
                     >
@@ -143,8 +155,8 @@ function NavBar({ darkMode, toggleDarkMode, menuOpen, toggleMenu }:{ darkMode: a
                 ))}
               </ul>
               {/* <div className="flex items-center justify-between mt-4 pt-4 border-t border-border dark:border-border-dark"> */}
-                {/* <span>Dark Mode</span> */}
-                {/* <Switch checked={darkMode} onCheckedChange={toggleDarkMode} /> */}
+              {/* <span>Dark Mode</span> */}
+              {/* <Switch checked={darkMode} onCheckedChange={toggleDarkMode} /> */}
               {/* </div> */}
             </nav>
           </motion.div>
@@ -154,31 +166,38 @@ function NavBar({ darkMode, toggleDarkMode, menuOpen, toggleMenu }:{ darkMode: a
   )
 }
 
-function HeroSection({ darkMode, scrollYProgress }:{ darkMode:any, scrollYProgress:any }) {
+function HeroSection({ darkMode, scrollYProgress }: { darkMode: any, scrollYProgress: any }) {
   const y = useTransform(scrollYProgress, [0, 0.5], ["0%", "50%"])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
 
   return (
-    <motion.section className="relative h-screen flex items-center justify-center text-center" style={{ y, opacity }}>
-      <div className="z-10">
+    <motion.section className="relative h-screen flex items-center max-md:items-start max-md:pt-16 justify-center text-center max-sm:h-3/4" style={{ y, opacity }}>
+      <div className="z-10 p-2 ">
         <motion.h2
-          className="text-5xl md:text-7xl font-bold mb-6"
+          className=" xl:text-7xl lg:text-5xl  md:text-5xl sm:text-4xl max-sm:text-2xl font-bold mb-4 max-sm:mb-0"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          🚀 Looking for expert developers to bring your ideas to life? Welcome to Debdevify!
+           Looking for expert developers to bring your ideas to life? 
+           <br />
+           <span className="mt-6 max-sm:mt-2 sm:block">
+           Welcome to DebDevify!
+           </span>
         </motion.h2>
         <motion.p
-          className="text-sm md:text-2xl mb-8 max-w-2xl mx-auto"
+          className="text-sm md:text-2xl  mb-8 max-w-2xl mx-auto "
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          We specialize in Next.js, React, MERN Stack, and DevOps, delivering high-performance websites, apps & bots.
-<br />
-✅ Fast Delivery | ✅ Top-Quality Work | ✅ Affordable Pricing
-<br />
+          We specialize in Next.js, React, MERN Stack, and DevOps, delivering high-performance websites, apps, Fantasy Games & bots.  
+          <br />
+          <br />
+          <span className="md:w-10/12 ">
+          <span className="max-md:mr-2">✔️  Fast Delivery   |</span> <span className="max-md:mr-2">✔️  Top-Quality Work  |</span>   <span className="max-md:block inline-block">✔️  Affordable Pricing</span>
+          </span>
+          <br />
 
         </motion.p>
         <motion.div
@@ -187,10 +206,10 @@ function HeroSection({ darkMode, scrollYProgress }:{ darkMode:any, scrollYProgre
           transition={{ duration: 0.7, delay: 0.4 }}
         >
           <a target="_blank" href="https://wa.me/message/ALF2AQCFGOS5G1">
-          <Button size="lg" className="bg-accent hover:bg-accent-hover text-accent-foreground">
-          
-          Talk to us<ArrowRight className="ml-2" />
-          </Button>
+            <Button size="lg" className="bg-accent hover:bg-accent-hover text-accent-foreground">
+
+              Talk to us
+            </Button>
           </a>
         </motion.div>
       </div>
@@ -202,44 +221,60 @@ function HeroSection({ darkMode, scrollYProgress }:{ darkMode:any, scrollYProgre
   )
 }
 
-function ServicesSection({ darkMode }:{darkMode:any}) {
+function ServicesSection({ darkMode }: { darkMode: any }) {
   const services = [
     {
       icon: Globe,
       title: "Web Development",
-      description: "Responsive and dynamic websites built with Node.js React or Nextjs",
+      description: "Responsive and dynamic websites built with Node.js, React, or Next.js",
     },
-    { icon: Smartphone, title: "Mobile Apps", description: "Cross-platform mobile applications using React Native" },
-    { icon: Code, title: "DevOps Solutions", description: `✅ 24/7 Server Monitoring , ✅ AWS, Azure, GCP Cloud Solutions, ✅ CI/CD Pipeline Setup
-     ✅ Auto Scaling and Server Management` },
-  ]
+    { 
+      icon: Smartphone, 
+      title: "Mobile Apps", 
+      description: "Cross-platform mobile applications using React Native" 
+    },
+    {
+      icon: Code, 
+      title: "DevOps Solutions", 
+      description: [
+        "✔️ 24/7 Server Monitoring",
+        "✔️ Auto Scaling and Server Management",
+        "✔️ CI/CD Pipeline Setup"
+      ]
+    }
+  ];
 
   return (
-    <section id="services" className="py-20">
-      <h3 className="text-3xl md:text-4xl font-bold mb-12 text-center">Our Services</h3>
-      <div className="grid md:grid-cols-3 gap-8">
-        {services.map((service, index) => (
-          <motion.div
-            key={index}
-            className="p-6 rounded-lg shadow-lg backdrop-filter backdrop-blur-lg bg-background/50 dark:bg-background-dark/50 border border-border dark:border-border-dark"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(0,0,0,0.12)" }}
-          >
-            <service.icon className="w-12 h-12 mb-4 text-accent " stroke="white" />
-            <h4 className="text-xl font-semibold mb-2">{service.title}</h4>
-            <p className="text-slate-400 dark:text-muted-dark">{service.description}</p>
-          </motion.div>
-        ))}
-      </div>
+    
+    <section id="services " className="py-20 " >
+      
+      <h3 className="text-3xl  md:text-4xl font-bold mb-12 text-center">Our Services</h3>
+      <div className="grid md:grid-cols-3 gap-6 ">
+      {services.map((service, index) => (
+        <div key={index} className=" bg-black p-4 border rounded-lg shadow">
+          <service.icon className="w-10 h-10 mb-2 text-primary" />
+          <h3 className="text-xl font-semibold">{service.title}</h3>
+
+          {/* Sirf "DevOps Solutions" wale me alag lines render hongi */}
+          {Array.isArray(service.description) ? (
+            <p className="text-gray-100">
+              {service.description.map((point, i) => (
+                <span key={i} className="max-md:block">{point}</span>
+              ))}
+            </p>
+          ) : (
+            <p className="text-gray-100">{service.description}</p>
+          )}
+        </div>
+      ))}
+    </div>
     </section>
   )
 }
 import { Projects } from "@/comp/proj"
-function PortfolioSection({ darkMode }:{darkMode:any}) {
+function PortfolioSection({ darkMode }: { darkMode: any }) {
   return (
-        <Projects/>
+    <Projects />
     // <section id="portfolio" className="py-20">
     //   <h3 className="text-3xl md:text-4xl font-bold mb-12 text-center">Our Work</h3>
     //   <Tabs defaultValue="web" className="w-full">
@@ -296,7 +331,7 @@ function PortfolioSection({ darkMode }:{darkMode:any}) {
   )
 }
 
-function ProcessSection({ darkMode }:{ darkMode :any}) {
+function ProcessSection({ darkMode }: { darkMode: any }) {
   const steps = [
     { title: "Discovery", description: "We dive deep into your business needs and goals" },
     { title: "Planning", description: "Creating a detailed roadmap for your project" },
@@ -456,7 +491,7 @@ function ProcessSection({ darkMode }:{ darkMode :any}) {
 //   )
 // }
 
-function ContactSection({ darkMode }:{ darkMode :any}) {
+function ContactSection({ darkMode }: { darkMode: any }) {
   return (
     <section id="contact" className="py-20">
       <h3 className="text-3xl md:text-4xl font-bold mb-12 text-center">Get In Touch</h3>
@@ -468,23 +503,23 @@ function ContactSection({ darkMode }:{ darkMode :any}) {
             type="text"
             placeholder="Your Name"
             className="bg-background dark:bg-background-dark border-border dark:border-border-dark"
-            />
+          />
           <Input
-          disabled
+            disabled
             type="email"
             placeholder="Your Email"
             className="bg-background dark:bg-background-dark border-border dark:border-border-dark"
-            />
-          <textarea 
+          />
+          <textarea
             disabled
             placeholder="Your Message"
             rows={4}
             className="w-full p-3 rounded-md focus:ring-2 focus:ring-accent focus:border-transparent bg-background dark:bg-background-dark border border-border dark:border-border-dark"
-            ></textarea>
+          ></textarea>
           <Button disabled type="submit" className="w-full bg-accent hover:bg-accent-hover text-accent-foreground">
             Send Message
           </Button>
-            </div>
+        </div>
         {/* </form> */}
       </div>
     </section>
@@ -532,7 +567,7 @@ function ContactSection({ darkMode }:{ darkMode :any}) {
 //     </motion.div>
 //   )
 // }
-function Footer({ darkMode }:{darkMode:any}) {
+function Footer({ darkMode }: { darkMode: any }) {
   return (
     <footer className="bg-background-light dark:bg-background-darker py-12 mt-20">
       <div className="container mx-auto px-4">
@@ -540,14 +575,14 @@ function Footer({ darkMode }:{darkMode:any}) {
           <div>
             <h4 className="text-lg font-semibold mb-4">About Us</h4>
             <p className="text-muted dark:text-muted-dark">
-              Debdevify is a leading software development company specializing in MERN stack and React Native
+              DebDevify is a leading software development company specializing in MERN stack and React Native
               & DevOps solutions.
             </p>
           </div>
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              {["Services",  "Process",  "Contact"].map((item) => (
+              {["Services", "Process", "Contact"].map((item) => (
                 <li key={item}>
                   <a
                     href={`#${item.toLowerCase()}`}
@@ -571,13 +606,30 @@ function Footer({ darkMode }:{darkMode:any}) {
           <div>
             <h4 className="text-lg font-semibold mb-4">Follow Us</h4>
             <div className="flex gap-2">
-            <a target="_blank" href="https://www.instagram.com/debdevify?igsh=MWE2OWRuNHhyOWxtbA==">
-            <FaInstagram size={32} color="black" className=" cursor-pointer hover:pointer " />
-            </a>
+              <a className="cursor-pointer hover:pointer " target="_blank" href="https://www.instagram.com/debdevify?igsh=MWE2OWRuNHhyOWxtbA==">
+                {/* <FaInstagram size={32} color="black"  /> */}
+                {/* <img src="" alt="." className="h-12" /> */}
+                <Image
+                  src="./insta.webp"
+                  alt="My Image"
+                  width={50}
+                  height={50}
+                  priority
+                />
 
-            <a  target="_blank" href="https://wa.me/message/ALF2AQCFGOS5G1">
-            <FaWhatsapp size={32} color="black" className=" cursor-pointer hover:pointer " />
-            </a>
+
+              </a>
+
+              <a target="_blank" href="https://wa.me/message/ALF2AQCFGOS5G1" className="cursor-pointer hover:pointer " >
+                {/* <img src="./a12.png" className="h-12" alt="." /> */}
+                <Image
+                  src="./whats.webp"
+                  alt="My Image"
+                  width={50}
+                  height={50}
+                  priority
+                />
+              </a>
             </div>
             <div className="flex space-x-4">{/* Add social media icons here */}</div>
           </div>
@@ -590,7 +642,7 @@ function Footer({ darkMode }:{darkMode:any}) {
   )
 }
 //
-function ThemeCustomizer({ accentColor , setAccentColor } : {accentColor:any , setAccentColor:any}   ) {
+function ThemeCustomizer({ accentColor, setAccentColor }: { accentColor: any, setAccentColor: any }) {
   return (
     <Popover>
       <PopoverTrigger asChild>
