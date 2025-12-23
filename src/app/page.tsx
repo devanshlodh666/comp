@@ -600,7 +600,7 @@ function Footer({ darkMode }: { darkMode: any }) {
               {/* <p>123 Tech Street</p> */}
               {/* <p>San Francisco, CA 94107</p> */}
               <p>Email: debdevify@gmail.com</p>
-              <p>Phone: 7415662161</p>
+              <p>Phone: 7489301982</p> 
             </address>
           </div>
           <div>
@@ -620,7 +620,7 @@ function Footer({ darkMode }: { darkMode: any }) {
 
               </a>
 
-              <a target="_blank" href="https://wa.me/message/ALF2AQCFGOS5G1" className="cursor-pointer hover:pointer " >
+              <a target="_blank" href="" className="cursor-pointer hover:pointer " >
                 {/* <img src="./a12.png" className="h-12" alt="." /> */}
                 <Image
                   src="./whats.webp"
