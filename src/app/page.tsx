@@ -620,7 +620,7 @@ function Footer({ darkMode }: { darkMode: any }) {
 
               </a>
 
-              <a target="_blank" href="" className="cursor-pointer hover:pointer " >
+              <a target="_blank" href="#" className="cursor-pointer hover:pointer " >
                 {/* <img src="./a12.png" className="h-12" alt="." /> */}
                 <Image
                   src="./whats.webp"
